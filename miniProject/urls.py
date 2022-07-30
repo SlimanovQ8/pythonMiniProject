@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from event_planner.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("event/add/", AddEventApiView.as_view(), ),
+    path("test/", EventListPagination.as_view(), ),
+    path("event-lists/", EventListAPIView.as_view(), ),
+    path("event/search/", EventsSearchListAPIView.as_view(), ),
+    path("full/", FullyBookedEvents.as_view(), ),
+    path("date/", EventListAfterCertainDateAPIView.as_view(), ),
+    path("event/<organizer_name>/", EventAPIView.as_view(), ),
+    path("event/<organizer_name>/update", EventObjAPIUpdateView.as_view()),
+    path("event/<organizer_name>/delete", EventDeleteAPIView.as_view()),
+
 ]
